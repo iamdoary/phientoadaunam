@@ -206,7 +206,7 @@
             box-shadow: 0 10px 28px rgba(212, 175, 55, 0.8);
         }
 
-        /* GIAO DIỆN HỒ SƠ VỤ ÁN - VỪA KHÍT NGUYÊN MÀN HÌNH ĐẦU TIÊN CỦA TIVI */
+        /* GIAO DIỆN HỒ SƠ VỤ ÁN */
         .case-card {
             width: 100%;
             background: rgba(30, 10, 15, 0.92);
@@ -233,19 +233,19 @@
         }
 
         .case-question {
-            font-size: clamp(16px, 2.2vw, 25px); /* Cỡ chữ câu hỏi vừa văn, rõ nét từ xa */
+            font-size: clamp(16px, 2.2vw, 25px);
             font-weight: 700;
             line-height: 1.35;
             color: #FFF;
         }
 
-        /* GRID 4 ĐÁP ÁN (BẰNG CHỨNG) - GỌN GÀNG HIỆN ĐỦ TRÊN MÀN HÌNH 1 */
+        /* GRID 4 ĐÁP ÁN (BẰNG CHỨNG) - CĂN GIỮA DỌC VÀ NGANG NỘI DUNG */
         .answers-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             width: 100%;
-            margin-bottom: 35px; /* Đẩy Bàn Điều Khiển BTC xuống trang dưới khi cuộn */
+            margin-bottom: 35px;
         }
 
         @media (max-width: 768px) {
@@ -258,14 +258,16 @@
             background: linear-gradient(145deg, #2A0D12, #3D141C);
             border: 2px solid rgba(212, 175, 55, 0.6);
             border-radius: 12px;
-            padding: 10px 16px;
+            padding: 12px 18px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 95px; /* Tinh chỉnh chiều cao vừa khít */
+            justify-content: center; /* Căn giữa theo chiều dọc */
+            align-items: center;     /* Căn giữa theo chiều ngang */
+            min-height: 110px;
             transition: all 0.25s ease;
-            text-align: left;
+            text-align: center;       /* Chữ căn giữa cho cân đối */
+            position: relative;
         }
 
         .evidence-card:hover {
@@ -281,14 +283,13 @@
         }
 
         .evidence-text {
-            font-size: clamp(14px, 1.8vw, 20px); /* Cỡ chữ đáp án cực kỳ vừa vặn */
+            font-size: clamp(14px, 1.8vw, 20px);
             line-height: 1.35;
             color: #FFF8E7;
             font-weight: 600;
         }
 
         .evidence-percent {
-            align-self: flex-end;
             font-family: 'Cinzel', serif;
             font-weight: 900;
             font-size: clamp(24px, 3vw, 36px);
@@ -297,7 +298,7 @@
             transform: scale(0.5);
             transition: all 0.3s ease;
             line-height: 1;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         .evidence-card.revealed .evidence-percent {
@@ -305,7 +306,7 @@
             transform: scale(1);
         }
 
-        /* BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC CONTROLLER) - NẰM Ở TRANG DƯỚI, CUỘN XUỐNG MỚI THẤY */
+        /* BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC CONTROLLER) */
         .judge-panel {
             width: 100%;
             background: rgba(15, 5, 8, 0.95);
@@ -464,7 +465,7 @@
         </header>
 
         <main>
-            <!-- 1. MÀN HÌNH KHAI MẠC (LOBBY - VỪA KHÍT 1 MÀN HÌNH) -->
+            <!-- 1. MÀN HÌNH KHAI MẠC (LOBBY) -->
             <div id="lobby-screen" class="screen active">
                 <h2 class="lobby-title">KHAI MẠC PHIÊN TÒA SPECIAL 20/10</h2>
                 <p class="lobby-desc">
@@ -477,7 +478,7 @@
 
             <!-- 2. MÀN HÌNH CHƠI GAME (GAMEPLAY) -->
             <div id="game-screen" class="screen">
-                <!-- THÔNG TIN VỤ ÁN & 4 ĐÁP ÁN (HIỆN TRỌN VẸN 100% NGUYÊN MÀN HÌNH ĐẦU TIÊN) -->
+                <!-- THÔNG TIN VỤ ÁN & 4 ĐÁP ÁN (HIỆN TRỌN VẸN 100% MÀN HÌNH ĐẦU TIÊN) -->
                 <div class="case-card">
                     <div class="case-header">
                         📁 <span id="case-number">HỒ SƠ VỤ ÁN SỐ 1</span>
@@ -491,7 +492,7 @@
                     <!-- Sẽ được JS tự động đổ 4 đáp án vào -->
                 </div>
 
-                <!-- BÀN ĐIỀU KHIỂN CỦA THẨM PHÁN (BTC) - NẰM TRANG DƯỚI, CUỘN XUỐNG MỚI THẤY -->
+                <!-- BÀN ĐIỀU KHIỂN CỦA THẨM PHÁN (BTC) - CUỘN XUỐNG DƯỚI MỚI THẤY -->
                 <div class="judge-panel">
                     <div class="panel-title">🔨 BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC)</div>
                     <div class="judge-buttons">
