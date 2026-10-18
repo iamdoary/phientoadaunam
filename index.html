@@ -34,8 +34,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 2vw;
-            overflow-y: auto; /* Cho phép cuộn tự nhiên khi nội dung dài */
+            padding: 15px 2vw;
+            overflow-y: auto;
         }
 
         /* CONTAINER CHÍNH CĂN GIỮA */
@@ -48,27 +48,27 @@
             margin: auto;
         }
 
-        /* HEADER & SCOREBOARD - GHIM CỐ ĐỊNH KHI CUỘN TRANG */
+        /* HEADER & SCOREBOARD - CHIỀU CAO VỪA VẶN ĐỂ KHÔNG ĐÈ NỘI DUNG */
         header {
             width: 100%;
             background: rgba(20, 5, 8, 0.95);
             border: 3px solid var(--gold-primary);
             border-radius: 16px;
-            padding: 15px 25px;
+            padding: 12px 20px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.7);
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: sticky;
-            top: 10px;
+            top: 0;
             z-index: 100;
         }
 
         .main-title {
             font-family: 'Cinzel', serif;
             color: var(--gold-primary);
-            font-size: clamp(26px, 3.5vw, 38px);
-            letter-spacing: 3px;
-            margin-bottom: 10px;
+            font-size: clamp(22px, 3vw, 32px);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
             text-shadow: 0 3px 6px rgba(0,0,0,0.9);
             font-weight: 900;
         }
@@ -77,37 +77,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .team-box {
             flex: 1;
-            padding: 12px 18px;
-            border-radius: 12px;
+            padding: 8px 12px;
+            border-radius: 10px;
             font-weight: bold;
         }
 
         .team-nam {
             background: linear-gradient(135deg, var(--team-nam), var(--team-nam-light));
-            border: 3px solid #A8DADC;
-            box-shadow: 0 0 15px rgba(69, 123, 157, 0.5);
+            border: 2px solid #A8DADC;
+            box-shadow: 0 0 12px rgba(69, 123, 157, 0.5);
         }
 
         .team-nu {
             background: linear-gradient(135deg, var(--team-nu), var(--team-nu-pink));
-            border: 3px solid #FFB703;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+            border: 2px solid #FFB703;
+            box-shadow: 0 0 12px rgba(255, 0, 127, 0.5);
         }
 
         .team-name {
-            font-size: clamp(16px, 2vw, 24px);
+            font-size: clamp(14px, 1.8vw, 20px);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 800;
         }
 
         .team-score {
-            font-size: clamp(34px, 4.5vw, 52px);
+            font-size: clamp(28px, 3.8vw, 44px);
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
             font-weight: 900;
@@ -116,7 +116,7 @@
 
         /* KHU VỰC CÁN CÂN TÒA ÁN */
         .scale-wrapper {
-            flex: 0 0 160px;
+            flex: 0 0 140px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -124,16 +124,16 @@
         }
 
         .scale-icon {
-            font-size: clamp(36px, 4.5vw, 54px);
+            font-size: clamp(30px, 3.8vw, 46px);
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-origin: center center;
             filter: drop-shadow(0 3px 6px rgba(0,0,0,0.7));
         }
 
         .scale-status {
-            font-size: clamp(13px, 1.5vw, 17px);
+            font-size: clamp(12px, 1.3vw, 15px);
             color: var(--gold-light);
-            margin-top: 4px;
+            margin-top: 2px;
             font-style: italic;
             font-weight: 700;
         }
@@ -158,11 +158,11 @@
             display: flex;
         }
 
-        /* LOBBY / MÀN HÌNH CHỜ */
+        /* LOBBY / MÀN HÌNH CHỜ - VỪA KHÍT 1 MÀN HÌNH */
         #lobby-screen {
             background: rgba(40, 15, 20, 0.9);
             border: 3px solid var(--gold-primary);
-            padding: 40px 30px;
+            padding: 35px 30px;
             border-radius: 20px;
             box-shadow: 0 12px 35px rgba(0,0,0,0.8);
             width: 100%;
@@ -173,7 +173,7 @@
         .lobby-title {
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
-            font-size: clamp(28px, 3.5vw, 42px);
+            font-size: clamp(26px, 3.2vw, 38px);
             margin-bottom: 20px;
             font-weight: 900;
         }
@@ -190,7 +190,7 @@
             background: linear-gradient(45deg, var(--gold-primary), var(--gold-light));
             color: #2A080C;
             font-weight: 900;
-            font-size: clamp(20px, 2.5vw, 30px);
+            font-size: clamp(20px, 2.5vw, 28px);
             padding: 16px 50px;
             border: none;
             border-radius: 40px;
@@ -206,14 +206,14 @@
             box-shadow: 0 10px 28px rgba(212, 175, 55, 0.8);
         }
 
-        /* GIAO DIỆN HỒ SƠ VỤ ÁN - CHỮ TO RÕ, TỰ ĐỘNG CUỘN TRANG MƯỢT MÀ */
+        /* GIAO DIỆN HỒ SƠ VỤ ÁN - VỪA KHÍT 1 MÀN HÌNH ĐẦU TIÊN */
         .case-card {
             width: 100%;
             background: rgba(30, 10, 15, 0.92);
             border: 3px solid var(--gold-primary);
             border-radius: 16px;
-            padding: 20px 30px;
-            margin-bottom: 20px;
+            padding: 16px 25px;
+            margin-bottom: 16px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.7);
             text-align: center;
         }
@@ -221,10 +221,10 @@
         .case-header {
             font-family: 'Cinzel', serif;
             color: var(--gold-primary);
-            font-size: clamp(22px, 2.5vw, 30px);
+            font-size: clamp(20px, 2.4vw, 28px);
             border-bottom: 2px solid rgba(212, 175, 55, 0.4);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -233,19 +233,19 @@
         }
 
         .case-question {
-            font-size: clamp(22px, 2.8vw, 32px); /* Tăng cỡ chữ câu hỏi cực to nét */
+            font-size: clamp(20px, 2.6vw, 30px); /* Chữ câu hỏi rất rõ, không bị đè */
             font-weight: 700;
-            line-height: 1.45;
+            line-height: 1.4;
             color: #FFF;
         }
 
-        /* GRID ĐÁP ÁN (BẰNG CHỨNG) - TO RÕ RỘNG RÃI */
+        /* GRID ĐÁP ÁN (BẰNG CHỨNG) - NẰM TRỌN TRONG MÀN HÌNH 1 */
         .answers-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
+            gap: 16px;
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 40px; /* Tạo khoảng trống thoải mái trước khi cuộn xuống BTC */
         }
 
         @media (max-width: 768px) {
@@ -258,12 +258,12 @@
             background: linear-gradient(145deg, #2A0D12, #3D141C);
             border: 2px solid rgba(212, 175, 55, 0.6);
             border-radius: 16px;
-            padding: 22px 25px;
+            padding: 18px 22px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 140px;
+            min-height: 130px;
             transition: all 0.25s ease;
             text-align: left;
         }
@@ -281,7 +281,7 @@
         }
 
         .evidence-text {
-            font-size: clamp(18px, 2.2vw, 26px); /* Tăng cỡ chữ đáp án siêu rõ */
+            font-size: clamp(17px, 2.2vw, 24px); /* Chữ đáp án to rõ chuẩn TV */
             line-height: 1.45;
             color: #FFF8E7;
             font-weight: 600;
@@ -291,7 +291,7 @@
             align-self: flex-end;
             font-family: 'Cinzel', serif;
             font-weight: 900;
-            font-size: clamp(32px, 3.8vw, 46px); /* Số % cực to lấp lánh */
+            font-size: clamp(30px, 3.5vw, 44px);
             color: var(--gold-light);
             opacity: 0;
             transform: scale(0.5);
@@ -305,22 +305,24 @@
             transform: scale(1);
         }
 
-        /* BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC CONTROLLER) */
+        /* BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC CONTROLLER) - NẰM Ở TRANG DƯỚI, CUỘN XUỐNG MỚI THẤY */
         .judge-panel {
             width: 100%;
             background: rgba(15, 5, 8, 0.95);
             border: 2px solid var(--gold-primary);
             border-radius: 16px;
-            padding: 18px 25px;
+            padding: 22px 30px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             align-items: center;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .panel-title {
-            font-size: clamp(14px, 1.5vw, 18px);
+            font-size: clamp(15px, 1.8vw, 20px);
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--gold-primary);
@@ -335,14 +337,14 @@
         }
 
         .btn-team {
-            padding: 15px 25px;
+            padding: 16px 25px;
             border: none;
             border-radius: 12px;
             font-weight: 800;
             color: white;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: clamp(16px, 2vw, 22px);
+            font-size: clamp(18px, 2.2vw, 24px);
             flex: 1;
             display: flex;
             align-items: center;
@@ -370,10 +372,10 @@
             background: linear-gradient(45deg, #333, #555);
             color: var(--gold-light);
             border: 2px solid var(--gold-primary);
-            padding: 12px 40px;
+            padding: 14px 45px;
             border-radius: 30px;
             font-weight: 800;
-            font-size: clamp(16px, 2vw, 22px);
+            font-size: clamp(18px, 2.2vw, 24px);
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -437,7 +439,7 @@
 <body>
 
     <div class="app-container">
-        <!-- SCOREBOARD HEADER (GHIM CỐ ĐỊNH TRÊN ĐỈNH KHI CUỘN TRANG) -->
+        <!-- SCOREBOARD HEADER (GHIM TRÊN ĐỈNH) -->
         <header>
             <div class="main-title">⚖️ PHIÊN TÒA TÌNH YÊU ⚖️</div>
             <div class="scoreboard-container">
@@ -462,7 +464,7 @@
         </header>
 
         <main>
-            <!-- 1. MÀN HÌNH KHAI MẠC (LOBBY - VỪA KHÍT NÊN KHÔNG CẦN CUỘN) -->
+            <!-- 1. MÀN HÌNH KHAI MẠC (LOBBY - VỪA KHÍT 1 MÀN HÌNH) -->
             <div id="lobby-screen" class="screen active">
                 <h2 class="lobby-title">KHAI MẠC PHIÊN TÒA SPECIAL 20/10</h2>
                 <p class="lobby-desc">
@@ -473,9 +475,9 @@
                 <button class="btn-gold" onclick="startGame()">Bắt Đầu Mở Hồ Sơ 🔨</button>
             </div>
 
-            <!-- 2. MÀN HÌNH CHƠI GAME (GAMEPLAY - CHỮ TO ĐẬM RÕ NÉT, CUỘN TRANG MƯỢT MÀ) -->
+            <!-- 2. MÀN HÌNH CHƠI GAME (GAMEPLAY) -->
             <div id="game-screen" class="screen">
-                <!-- THÔNG TIN VỤ ÁN -->
+                <!-- THÔNG TIN VỤ ÁN & 4 ĐÁP ÁN (NẰM TRỌN NGUYÊN MÀN HÌNH ĐẦU TIÊN) -->
                 <div class="case-card">
                     <div class="case-header">
                         📁 <span id="case-number">HỒ SƠ VỤ ÁN SỐ 1</span>
@@ -485,12 +487,11 @@
                     </div>
                 </div>
 
-                <!-- 4 TẬP BẰNG CHỨNG (ĐÁP ÁN) -->
                 <div class="answers-grid" id="answers-container">
                     <!-- Sẽ được JS tự động đổ 4 đáp án vào -->
                 </div>
 
-                <!-- BÀN ĐIỀU KHIỂN CỦA THẨM PHÁN (BTC) -->
+                <!-- BÀN ĐIỀU KHIỂN CỦA THẨM PHÁN (BTC) - CUỘN XUỐNG DƯỚI MỚI THẤY -->
                 <div class="judge-panel">
                     <div class="panel-title">🔨 BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC)</div>
                     <div class="judge-buttons">
@@ -619,7 +620,7 @@
             document.getElementById('btn-next-case').disabled = true;
             selectedPercent = 0;
 
-            // Tự động cuộn mượt lên đỉnh câu hỏi mới
+            // Cuộn mượt lên vị trí câu hỏi mới
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
