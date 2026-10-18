@@ -27,47 +27,51 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        html, body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden; /* Khóa cuộn chuột tuyệt đối */
+        }
+
         body {
             background: linear-gradient(135deg, var(--bg-wood) 0%, var(--bg-red) 100%);
             color: var(--text-light);
-            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center; /* Căn giữa toàn bộ theo chiều dọc */
-            padding: 20px;
-        }
-
-        /* CONTAINER CHÍNH CĂN GIỮA */
-        .app-container {
-            width: 100%;
-            max-width: 1200px; /* Mở rộng chiều rộng tối ưu cho TV */
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: auto;
+            padding: 1vh 2vw;
         }
 
-        /* HEADER & SCOREBOARD (CÁN CÂN DI ĐỘNG) */
+        /* CONTAINER CHÍNH CĂN GIỮA VỪA VẶN KHUNG HÌNH TV */
+        .app-container {
+            width: 100%;
+            max-width: 1150px;
+            height: 98vh; /* Bắt buộc vừa khít 98% chiều cao màn hình */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* HEADER & SCOREBOARD (THU GỌN CHIỀU CAO) */
         header {
             width: 100%;
             background: rgba(20, 5, 8, 0.85);
-            border: 3px solid var(--gold-primary);
-            border-radius: 20px;
-            padding: 20px 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            margin-bottom: 25px;
+            border: 2px solid var(--gold-primary);
+            border-radius: 14px;
+            padding: 10px 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
             text-align: center;
+            flex-shrink: 0;
         }
 
         .main-title {
             font-family: 'Cinzel', serif;
             color: var(--gold-primary);
-            font-size: 38px; /* Tăng kích thước tiêu đề cho TV */
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.8);
+            font-size: clamp(20px, 2.8vh, 30px);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
             font-weight: 900;
         }
 
@@ -75,83 +79,85 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 10px;
-            gap: 20px;
+            gap: 15px;
         }
 
         .team-box {
             flex: 1;
-            padding: 18px;
-            border-radius: 15px;
+            padding: 8px 12px;
+            border-radius: 10px;
             font-weight: bold;
-            transition: transform 0.3s ease;
         }
 
         .team-nam {
             background: linear-gradient(135deg, var(--team-nam), var(--team-nam-light));
-            border: 3px solid #A8DADC;
-            box-shadow: 0 0 15px rgba(69, 123, 157, 0.5);
+            border: 2px solid #A8DADC;
+            box-shadow: 0 0 10px rgba(69, 123, 157, 0.4);
         }
 
         .team-nu {
             background: linear-gradient(135deg, var(--team-nu), var(--team-nu-pink));
-            border: 3px solid #FFB703;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+            border: 2px solid #FFB703;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
         }
 
         .team-name {
-            font-size: 22px; /* Tăng chữ tên team */
+            font-size: clamp(13px, 1.8vh, 18px);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .team-score {
-            font-size: 48px; /* Tăng số điểm rất to */
+            font-size: clamp(26px, 3.8vh, 38px);
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
             font-weight: bold;
+            line-height: 1.1;
         }
 
         /* KHU VỰC CÁN CÂN TÒA ÁN */
         .scale-wrapper {
-            flex: 0 0 200px;
+            flex: 0 0 140px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
-            padding: 0 10px;
+            padding: 0 5px;
         }
 
         .scale-icon {
-            font-size: 60px; /* Tăng biểu tượng cân */
+            font-size: clamp(30px, 4.2vh, 46px);
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-origin: center center;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
         }
 
         .scale-status {
-            font-size: 18px; /* Tăng trạng thái cân */
+            font-size: clamp(11px, 1.5vh, 14px);
             color: var(--gold-light);
-            margin-top: 8px;
+            margin-top: 2px;
             font-style: italic;
             font-weight: 600;
         }
 
-        /* CONTAINER CHÍNH */
+        /* MAIN CONTAINER TỰ ĐỘNG CÂN BẰNG CHIỀU CAO */
         main {
             width: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
+            margin-top: 10px;
+            min-height: 0; /* Cho phép co giãn linh hoạt */
         }
 
-        /* LOBBY / MAN HINH CHỜ */
         .screen {
             display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
+            height: 100%;
             text-align: center;
         }
 
@@ -159,81 +165,82 @@
             display: flex;
         }
 
+        /* LOBBY / MÀN HÌNH CHỜ THU GỌN */
         #lobby-screen {
-            text-align: center;
             background: rgba(40, 15, 20, 0.85);
-            border: 3px solid var(--gold-primary);
-            padding: 50px 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            border: 2px solid var(--gold-primary);
+            padding: 30px 25px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            max-width: 900px;
         }
 
         .lobby-title {
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
-            font-size: 34px; /* Tăng chữ tiêu đề lobby */
-            margin-bottom: 20px;
+            font-size: clamp(22px, 3.2vh, 32px);
+            margin-bottom: 12px;
             font-weight: 700;
         }
 
         .lobby-desc {
-            font-size: 22px; /* Tăng kích thước chữ mô tả cho dễ đọc trên TV */
-            line-height: 1.7;
-            margin: 20px 0 40px 0;
+            font-size: clamp(15px, 2.2vh, 20px);
+            line-height: 1.6;
+            margin: 15px 0 25px 0;
             color: #E0D0C0;
-            max-width: 900px;
         }
 
         .btn-gold {
             background: linear-gradient(45deg, var(--gold-primary), var(--gold-light));
             color: #2A080C;
             font-weight: 800;
-            font-size: 24px; /* Tăng nút bấm to rõ */
-            padding: 18px 50px;
+            font-size: clamp(16px, 2.3vh, 22px);
+            padding: 12px 36px;
             border: none;
-            border-radius: 40px;
+            border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .btn-gold:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.7);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 22px rgba(212, 175, 55, 0.7);
         }
 
         /* GIAO DIỆN HỒ SƠ VỤ ÁN */
         .case-card {
             width: 100%;
             background: rgba(30, 10, 15, 0.9);
-            border: 3px solid var(--gold-primary);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold-primary);
+            border-radius: 14px;
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
             text-align: center;
+            flex-shrink: 0;
         }
 
         .case-header {
             font-family: 'Cinzel', serif;
             color: var(--gold-primary);
-            font-size: 26px; /* Tăng tiêu đề vụ án */
-            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
+            font-size: clamp(15px, 2.2vh, 20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             font-weight: 700;
         }
 
         .case-question {
-            font-size: 26px; /* Tăng chữ câu hỏi to rõ trên TV */
+            font-size: clamp(15px, 2.3vh, 21px);
             font-weight: 600;
-            line-height: 1.6;
+            line-height: 1.45;
             color: #FFF;
         }
 
@@ -241,41 +248,40 @@
         .answers-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 10px;
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
+            flex: 1;
+            min-height: 0;
         }
 
         .evidence-card {
             background: linear-gradient(145deg, #2A0D12, #3D141C);
             border: 2px solid rgba(212, 175, 55, 0.5);
-            border-radius: 16px;
-            padding: 20px 25px;
+            border-radius: 12px;
+            padding: 10px 14px;
             cursor: pointer;
-            position: relative;
-            min-height: 120px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.25s ease;
             text-align: left;
         }
 
         .evidence-card:hover {
             border-color: var(--gold-primary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
         }
 
         .evidence-card.selected {
-            border: 3px solid #FFD700;
+            border: 2px solid #FFD700;
             background: linear-gradient(145deg, #4A1A22, #5E202B);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .evidence-text {
-            font-size: 20px; /* Tăng chữ đáp án */
-            line-height: 1.5;
+            font-size: clamp(13px, 1.9vh, 17px);
+            line-height: 1.35;
             color: #F0E0D0;
             font-weight: 500;
         }
@@ -284,12 +290,12 @@
             align-self: flex-end;
             font-family: 'Cinzel', serif;
             font-weight: 900;
-            font-size: 32px; /* Tăng số % to rõ */
+            font-size: clamp(20px, 3vh, 28px);
             color: var(--gold-light);
-            margin-top: 10px;
             opacity: 0;
             transform: scale(0.5);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            line-height: 1;
         }
 
         .evidence-card.revealed .evidence-percent {
@@ -302,16 +308,17 @@
             width: 100%;
             background: rgba(15, 5, 8, 0.95);
             border: 2px solid var(--gold-primary);
-            border-radius: 20px;
-            padding: 20px 30px;
+            border-radius: 14px;
+            padding: 10px 18px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 8px;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .panel-title {
-            font-size: 16px;
+            font-size: clamp(10px, 1.4vh, 13px);
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--gold-primary);
@@ -320,25 +327,25 @@
 
         .judge-buttons {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             width: 100%;
             justify-content: center;
         }
 
         .btn-team {
-            padding: 16px 25px;
+            padding: 10px 16px;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 700;
             color: white;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: 18px; /* Tăng cỡ chữ nút bấm BTC */
+            font-size: clamp(13px, 1.8vh, 16px);
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .btn-team:disabled {
@@ -349,22 +356,22 @@
 
         .btn-add-nam {
             background: linear-gradient(135deg, var(--team-nam), var(--team-nam-light));
-            border: 2px solid #A8DADC;
+            border: 1.5px solid #A8DADC;
         }
 
         .btn-add-nu {
             background: linear-gradient(135deg, var(--team-nu), var(--team-nu-pink));
-            border: 2px solid #FFB703;
+            border: 1.5px solid #FFB703;
         }
 
         .btn-next {
             background: linear-gradient(45deg, #333, #555);
             color: var(--gold-light);
-            border: 2px solid var(--gold-primary);
-            padding: 15px 40px;
-            border-radius: 30px;
+            border: 1.5px solid var(--gold-primary);
+            padding: 8px 28px;
+            border-radius: 20px;
             font-weight: 700;
-            font-size: 18px;
+            font-size: clamp(12px, 1.7vh, 15px);
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -378,56 +385,55 @@
         #verdict-screen {
             text-align: center;
             background: rgba(30, 8, 12, 0.95);
-            border: 3px solid var(--gold-primary);
-            padding: 40px 30px;
-            border-radius: 25px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+            border: 2px solid var(--gold-primary);
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            max-width: 900px;
         }
 
         .verdict-title {
             font-family: 'Cinzel', serif;
-            font-size: 44px; /* Tăng chữ tuyên án cực đại */
+            font-size: clamp(26px, 4vh, 38px);
             color: var(--gold-primary);
-            margin-bottom: 25px;
-            letter-spacing: 4px;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
             font-weight: 900;
-            text-shadow: 0 3px 8px rgba(0,0,0,0.9);
         }
 
         .verdict-box {
             background: rgba(20, 5, 8, 0.85);
-            border: 2px dashed var(--gold-light);
-            padding: 35px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            font-size: 22px; /* Tăng chữ lời chúc lên rất rõ */
+            border: 1.5px dashed var(--gold-light);
+            padding: 20px 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: clamp(15px, 2.2vh, 20px);
             color: #FFF8E7;
             text-align: center;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
         }
 
         .verdict-box p {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .gift-icon {
-            font-size: 70px;
-            margin: 15px 0;
+            font-size: clamp(40px, 6vh, 60px);
+            margin: 5px 0;
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
+            40% {transform: translateY(-12px);}
+            60% {transform: translateY(-6px);}
         }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- SCOREBOARD HEADER (LUÔN CĂN GIỮA ĐỈNH) -->
+        <!-- SCOREBOARD HEADER -->
         <header>
             <div class="main-title">⚖️ PHIÊN TÒA TÌNH YÊU ⚖️</div>
             <div class="scoreboard-container">
@@ -510,7 +516,6 @@
     </div>
 
     <script>
-        // DỮ LIỆU 6 CÂU HỎI VÀ ĐÁP ÁN KHẢO SÁT CHUẨN
         const questions = [
             {
                 title: "VỤ ÁN SỐ 1: YÊU XA & SỰ NHẠT NHỄO",
