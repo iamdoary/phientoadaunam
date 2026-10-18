@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHIÊN TÒA TÌNH YÊU - 20/10 SPECIAL</title>
+    <!-- Font Google Chữ Sang Trọng & Hiện Đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-wood: #2B1810;
+            --bg-red: #4A0E17;
+            --card-bg: #3B1219;
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --team-nam: #1D3557;
+            --team-nam-light: #457B9D;
+            --team-nu: #8338EC;
+            --team-nu-pink: #FF007F;
+            --text-light: #FFF8E7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-wood) 0%, var(--bg-red) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+        }
+
+        /* HEADER & SCOREBOARD (CÁN CÂN DI ĐỘNG) */
+        header {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(20, 5, 8, 0.85);
+            border: 2px solid var(--gold-primary);
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .scoreboard-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .team-box {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .team-nam {
+            background: linear-gradient(135deg, var(--team-nam), var(--team-nam-light));
+            border: 2px solid #A8DADC;
+            box-shadow: 0 0 10px rgba(69, 123, 157, 0.4);
+        }
+
+        .team-nu {
+            background: linear-gradient(135deg, var(--team-nu), var(--team-nu-pink));
+            border: 2px solid #FFB703;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+        }
+
+        .team-name {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-score {
+            font-size: 28px;
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+        }
+
+        /* KHU VỰC CÁN CÂN TÒA ÁN */
+        .scale-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .scale-icon {
+            font-size: 40px;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center center;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
+        .scale-status {
+            font-size: 11px;
+            color: var(--gold-light);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* CONTAINER CHÍNH */
+        main {
+            width: 100%;
+            max-width: 900px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* LOBBY / MAN HINH CHỜ */
+        .screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        #lobby-screen {
+            text-align: center;
+            background: rgba(40, 15, 20, 0.8);
+            border: 1px solid var(--gold-primary);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        .lobby-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 20px 0 30px 0;
+            color: #E0D0C0;
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, var(--gold-primary), var(--gold-light));
+            color: #2A080C;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+        }
+
+        /* GIAO DIỆN HỒ SƠ VỤ ÁN */
+        .case-card {
+            width: 100%;
+            background: rgba(30, 10, 15, 0.9);
+            border: 2px solid var(--gold-primary);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .case-header {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 18px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .case-question {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #FFF;
+        }
+
+        /* GRID LẬP TẬP BẰNG CHỨNG (ĐÁP ÁN) */
+        .answers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 650px) {
+            .answers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .evidence-card {
+            background: linear-gradient(145deg, #2A0D12, #3D141C);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .evidence-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .evidence-card.selected {
+            border: 2px solid #FFD700;
+            background: linear-gradient(145deg, #4A1A22, #5E202B);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .evidence-text {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #F0E0D0;
+        }
+
+        .evidence-percent {
+            align-self: flex-end;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--gold-light);
+            margin-top: 10px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+        }
+
+        .evidence-card.revealed .evidence-percent {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC CONTROLLER) */
+        .judge-panel {
+            width: 100%;
+            background: rgba(15, 5, 8, 0.95);
+            border: 1px solid var(--gold-primary);
+            border-radius: 15px;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .panel-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+        }
+
+        .judge-buttons {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-team {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            flex: 1;
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-team:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        .btn-add-nam {
+            background: linear-gradient(135deg, var(--team-nam), var(--team-nam-light));
+            border: 1px solid #A8DADC;
+        }
+
+        .btn-add-nu {
+            background: linear-gradient(135deg, var(--team-nu), var(--team-nu-pink));
+            border: 1px solid #FFB703;
+        }
+
+        .btn-next {
+            background: linear-gradient(45deg, #333, #555);
+            color: var(--gold-light);
+            border: 1px solid var(--gold-primary);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        /* MÀN HÌNH TUYÊN ÁN (VERDICT) */
+        #verdict-screen {
+            text-align: center;
+            background: rgba(30, 8, 12, 0.95);
+            border: 2px solid var(--gold-primary);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .verdict-title {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .verdict-box {
+            background: rgba(20, 5, 8, 0.8);
+            border: 1px dashed var(--gold-light);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 16px;
+            color: #FFF8E7;
+            text-align: justify;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .verdict-box p {
+            margin-bottom: 15px;
+        }
+
+        .gift-icon {
+            font-size: 50px;
+            margin: 10px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SCOREBOARD HEADER (LUÔN HIỆN TRÊN ĐỈNH) -->
+    <header>
+        <div class="main-title">⚖️ PHIÊN TÒA TÌNH YÊU ⚖️</div>
+        <div class="scoreboard-container">
+            <!-- TEAM NAM -->
+            <div class="team-box team-nam">
+                <div class="team-name">TEAM NAM</div>
+                <div class="team-score" id="score-nam">0</div>
+            </div>
+
+            <!-- CÁN CÂN TÒA ÁN -->
+            <div class="scale-wrapper">
+                <div class="scale-icon" id="scale-icon">⚖️</div>
+                <div class="scale-status" id="scale-status">Cân bằng</div>
+            </div>
+
+            <!-- TEAM NỮ -->
+            <div class="team-box team-nu">
+                <div class="team-name">TEAM NỮ</div>
+                <div class="team-score" id="score-nu">0</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. MÀN HÌNH KHAI MẠC (LOBBY) -->
+        <div id="lobby-screen" class="screen active">
+            <h2 style="font-family: 'Cinzel', serif; color: var(--gold-light);">KHAI MẠC PHIÊN TÒA SPECIAL 20/10</h2>
+            <p class="lobby-desc">
+                Chào mừng toàn thể lớp đến với <b>Phiên Tòa Tình Yêu</b>!<br>
+                Nơi phân xử những vụ án tâm lý hóc húa nhất tuổi học trò. 
+                Hai đội Nam - Nữ sẽ cùng đưa ra lựa chọn, phần trăm đồng thuận của Hội Đồng khảo sát sẽ chính là số điểm dành cho đội bạn!
+            </p>
+            <button class="btn-gold" onclick="startGame()">Bắt Đầu Mở Hồ Sơ 🔨</button>
+        </div>
+
+        <!-- 2. MÀN HÌNH CHƠI GAME (GAMEPLAY) -->
+        <div id="game-screen" class="screen">
+            <!-- THÔNG TIN VỤ ÁN -->
+            <div class="case-card">
+                <div class="case-header">
+                    📁 <span id="case-number">HỒ SƠ VỤ ÁN SỐ 1</span>
+                </div>
+                <div class="case-question" id="case-question-text">
+                    Loading question...
+                </div>
+            </div>
+
+            <!-- 4 TẬP BẰNG CHỨNG (ĐÁP ÁN) -->
+            <div class="answers-grid" id="answers-container">
+                <!-- Sẽ được JS tự động đổ 4 đáp án vào -->
+            </div>
+
+            <!-- BÀN ĐIỀU KHIỂN CỦA THẨM PHÁN (BTC) -->
+            <div class="judge-panel">
+                <div class="panel-title">🔨 BÀN ĐIỀU KHIỂN THẨM PHÁN (BTC)</div>
+                <div class="judge-buttons">
+                    <button class="btn-team btn-add-nam" id="btn-add-nam" onclick="addScore('nam')" disabled>
+                        ➕ Cộng Điểm TEAM NAM
+                    </button>
+                    <button class="btn-team btn-add-nu" id="btn-add-nu" onclick="addScore('nu')" disabled>
+                        ➕ Cộng Điểm TEAM NỮ
+                    </button>
+                </div>
+                <button class="btn-next" id="btn-next-case" onclick="nextQuestion()" disabled>
+                    Phiên Tòa Tiếp Theo ➡️
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. MÀN HÌNH TUYÊN ÁN CHUNG CUỘC -->
+        <div id="verdict-screen" class="screen">
+            <div class="verdict-title">⚖️ TÒA TUYÊN ÁN ⚖️</div>
+            <div class="gift-icon">🎁🌸✨</div>
+            <div class="verdict-box" id="verdict-content">
+                <!-- Lời tuyên án sẽ tự động hiện đúng theo team thắng -->
+            </div>
+            <button class="btn-gold" onclick="location.reload()">Thiết Lập Phiên Tòa Mới 🔄</button>
+        </div>
+    </main>
+
+    <script>
+        // DỮ LIỆU 6 CÂU HỎI VÀ ĐÁP ÁN KHẢO SÁT CHUẨN
+        const questions = [
+            {
+                title: "VỤ ÁN SỐ 1: YÊU XA & SỰ NHẠT NHẼO",
+                question: "Trong giai đoạn yêu xa, nếu 2 bạn đang cảm thấy chán thì sẽ làm gì để tạo niềm vui cho nhau?",
+                answers: [
+                    { text: "A. Cùng nhau lên lịch 'dating online' (xem phim chung qua mạng, chơi game đôi, gọi video ăn tối).", percent: 45 },
+                    { text: "B. Âm thầm đặt đồ ăn/quà bất ngờ gửi đến tận nhà đối phương để tạo sự lãng mạn.", percent: 18 },
+                    { text: "C. Mở một cuộc 'xả hội thoại' thẳng thắn, chia sẻ cảm xúc hiện tại rồi rủ nhau đi du lịch chung.", percent: 35 },
+                    { text: "D. Nhắn tin bảo: 'Thấy chán quá, hay là mình tạm chia tay vài tháng cho hết chán rồi quen lại nha?'", percent: 2 }
+                ]
+            },
+            {
+                title: "VỤ ÁN SỐ 2: GIỮ LỬA KHOẢNG CÁCH",
+                question: "Khi yêu nhưng khoảng cách địa lý quá xa, bạn sẽ làm điều gì để giữ mối quan hệ này bền lâu?",
+                answers: [
+                    { text: "A. Luôn giữ niềm tin, giao tiếp rõ ràng và thiết lập những mốc thời gian cụ thể để gặp lại nhau.", percent: 40 },
+                    { text: "B. Cập nhật cuộc sống hàng ngày cho nhau qua tin nhắn/hình ảnh để người kia không cảm thấy bị ngắt kết nối.", percent: 20 },
+                    { text: "C. Tạo thói quen chúc buổi sáng/buổi tối và luôn tôn trọng không gian riêng của đối phương.", percent: 10 },
+                    { text: "D. Đăng ký thi chung một trường đại học/chuyển đến cùng thành phố để 'đẩy nhanh tốc độ phản ứng' thu hẹp khoảng cách.", percent: 30 }
+                ]
+            },
+            {
+                title: "VỤ ÁN SỐ 3: BẰNG CHỨNG LỪA DỐI",
+                question: "Vô tình bạn phát hiện ra người yêu quen qua mạng của mình lừa dối mình trong thời gian nhưng vẫn còn yêu rất sâu đậm thì bạn nên xử lý tình huống này như thế nào?",
+                answers: [
+                    { text: "A. Bình tĩnh nói chuyện trực tiếp một lần để làm rõ lý do trước khi đưa ra quyết định cuối cùng.", percent: 35 },
+                    { text: "B. Coi như một người qua đường, block ngay và luôn không cần giải thích.", percent: 12 },
+                    { text: "C. Cho bản thân không gian riêng vài ngày để suy nghĩ kỹ càng trước khi quyết định dừng lại hay tiếp tục.", percent: 50 },
+                    { text: "D. Lên mạng bóc phốt, tag hẳn tài khoản đối phương vào bài viết kèm caption: 'Cảm ơn vì đã cho tui một bài học'.", percent: 3 }
+                ]
+            },
+            {
+                title: "VỤ ÁN SỐ 4: BẬC THẦY 'QUÊN MANG VÍ'",
+                question: "Hai người hẹn hò, nhưng lần nào đi chơi/ăn uống người yêu cũng 'quên mang ví' hoặc chủ động để bạn trả hết. Bạn xử lý sao?",
+                answers: [
+                    { text: "A. Chọn thời điểm thích hợp góp ý nhẹ nhàng, đề xuất chia đôi (sòng phẳng) hoặc luân phiên trả tiền.", percent: 50 },
+                    { text: "B. Lần sau đi ăn cứ đến lúc thanh toán là bận... đi vệ sinh hoặc nhờ nhân viên tách hóa đơn riêng.", percent: 10 },
+                    { text: "C. Mua đồ ăn về nhà tự nấu để vừa tiết kiệm vừa tránh chuyện tiền bạc nhạy cảm.", percent: 25 },
+                    { text: "D. Nếu là con trai, chủ động trả, là con trai nên tinh tế một chút.", percent: 15 }
+                ]
+            },
+            {
+                title: "VỤ ÁN SỐ 5: RANH GIỚI BẠN THÂN KHÁC GIỚI",
+                question: "Bạn phát hiện người yêu có một 'bạn thân khác giới' cực kỳ thân thiết, tối nào cũng nhắn tin tâm sự và hay rủ nhau đi cà phê riêng. Bạn sẽ làm gì?",
+                answers: [
+                    { text: "A. Thẳng thắn chia sẻ cảm xúc của mình và cùng người yêu thống nhất ranh giới rõ ràng với bạn thân.", percent: 60 },
+                    { text: "B. Rủ thêm bạn thân của mình đi cùng trong các buổi gặp để 'tạo thế cân bằng' xem ai ngại biết liền.", percent: 10 },
+                    { text: "C. Tôn trọng mối quan hệ riêng của họ nhưng quan sát thái độ của người yêu để đánh giá sự tôn trọng dành cho mình.", percent: 25 },
+                    { text: "D. Kết bạn ngay với người bạn thân đó, nhắn tin hỏi kinh nghiệm: 'Bạn hiểu rõ người yêu tui vậy chắc biết bạn ấy thích chia tay kiểu gì nhất nhỉ?'", percent: 5 }
+                ]
+            },
+            {
+                title: "VỤ ÁN SỐ 6: ĐỊNH HƯỚNG TƯƠNG LAI",
+                question: "Hai bạn sắp tốt nghiệp, người yêu muốn cả hai cùng ở lại thành phố làm việc/học tập, nhưng gia đình bạn lại muốn bạn về quê. Bạn đối mặt thế nào?",
+                answers: [
+                    { text: "A. Ngồi lại phân tích ưu/nhược điểm từng lựa chọn để cùng tìm giải pháp dung hòa định hướng của cả hai.", percent: 45 },
+                    { text: "B. Tạm thời tập trung vào mục tiêu cá nhân trước, nếu thật sự thương nhau thì sẽ tìm cách vượt qua khoảng cách.", percent: 20 },
+                    { text: "C. Lắng nghe định hướng của gia đình rồi trao đổi lại với người yêu để xem đối phương có sẵn sàng đồng hành không.", percent: 30 },
+                    { text: "D. Bảo người yêu: 'Hay em theo anh/anh theo em về quê ở ẩn, trồng cây nuôi cá sống qua ngày cho trọn tình trọn nghĩa?'", percent: 5 }
+                ]
+            }
+        ];
+
+        // BIẾN TRẠNG THÁI GAME
+        let currentQuestionIndex = 0;
+        let scoreNam = 0;
+        let scoreNu = 0;
+        let selectedPercent = 0;
+
+        // BẮT ĐẦU GAME
+        function startGame() {
+            document.getElementById('lobby-screen').classList.remove('active');
+            document.getElementById('game-screen').classList.add('active');
+            loadQuestion(0);
+        }
+
+        // TẢI CÂU HỎI LÊN GIAO DIỆN
+        function loadQuestion(index) {
+            const q = questions[index];
+            document.getElementById('case-number').innerText = q.title;
+            document.getElementById('case-question-text').innerText = q.question;
+
+            const container = document.getElementById('answers-container');
+            container.innerHTML = '';
+
+            q.answers.forEach((ans, i) => {
+                const card = document.createElement('div');
+                card.className = 'evidence-card';
+                card.onclick = () => selectAnswer(card, ans.percent);
+
+                card.innerHTML = `
+                    <div class="evidence-text">${ans.text}</div>
+                    <div class="evidence-percent">${ans.percent}%</div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Reset trạng thái nút điều khiển Thẩm Phán
+            document.getElementById('btn-add-nam').disabled = true;
+            document.getElementById('btn-add-nu').disabled = true;
+            document.getElementById('btn-next-case').disabled = true;
+            selectedPercent = 0;
+        }
+
+        // CHỌN ĐÁP ÁN & BÓC MỞ PHẦN TRĂM
+        function selectAnswer(cardElement, percent) {
+            // Mở lật phần trăm của thẻ được chọn
+            if (!cardElement.classList.contains('revealed')) {
+                cardElement.classList.add('revealed', 'selected');
+                selectedPercent = percent;
+
+                // Kích hoạt nút cộng điểm cho Thẩm phán
+                document.getElementById('btn-add-nam').disabled = false;
+                document.getElementById('btn-add-nu').disabled = false;
+            }
+        }
+
+        // CỘNG ĐIỂM CHO TEAM VÀ CẬP NHẬT CÁN CÂN
+        function addScore(team) {
+            if (team === 'nam') {
+                scoreNam += selectedPercent;
+                document.getElementById('score-nam').innerText = scoreNam;
+            } else if (team === 'nu') {
+                scoreNu += selectedPercent;
+                document.getElementById('score-nu').innerText = scoreNu;
+            }
+
+            // Vô hiệu hóa nút cộng điểm sau khi đã cộng xong cho câu đó
+            document.getElementById('btn-add-nam').disabled = true;
+            document.getElementById('btn-add-nu').disabled = true;
+            document.getElementById('btn-next-case').disabled = false;
+
+            // Cập nhật độ nghiêng của Cán Cân
+            updateScale();
+        }
+
+        // CẬP NHẬT GÓC NGHIÊNG CỦA CÁN CÂN TÒA ÁN
+        function updateScale() {
+            const scaleIcon = document.getElementById('scale-icon');
+            const scaleStatus = document.getElementById('scale-status');
+
+            if (scoreNam > scoreNu) {
+                scaleIcon.style.transform = 'rotate(-15deg)'; // Nghiêng về bên Nam
+                scaleStatus.innerText = 'Team Nam đang dẫn điểm!';
+            } else if (scoreNu > scoreNam) {
+                scaleIcon.style.transform = 'rotate(15deg)'; // Nghiêng về bên Nữ
+                scaleStatus.innerText = 'Team Nữ đang dẫn điểm!';
+            } else {
+                scaleIcon.style.transform = 'rotate(0deg)';
+                scaleStatus.innerText = 'Cân bằng!';
+            }
+        }
+
+        // CHUYỂN CÂU HỎI TIẾP THEO HOẶC TUYÊN ÁN
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showVerdict();
+            }
+        }
+
+        // HIỂN THỊ MÀN HÌNH TUYÊN ÁN DỰA TRÊN KẾT QUẢ
+        function showVerdict() {
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('verdict-screen').classList.add('active');
+
+            const verdictBox = document.getElementById('verdict-content');
+
+            // Xử lý thông báo theo đúng Concept bạn yêu cầu (Dù Nam thắng thì vẫn xử Nữ thắng/nhường quà)
+            if (scoreNu >= scoreNam) {
+                verdictBox.innerHTML = `
+                    <p>Chúc mừng 2 team đã hoàn thành xong phiên tòa, kết quả chung cuộc phần thắng nghiêng về phía <b>TEAM NỮ</b>.</p>
+                    <p>Để chúc mừng sự chiến thắng này, Ban tổ chức quyết định gửi tới tất cả các bạn nữ một phần quà nho nhỏ nhằm chúc mừng các bạn. Chúc những bông hoa của lớp luôn rạng rỡ, vui vẻ và được yêu thương thật nhiều. Chúc các bạn học thật tốt và đạt được những điều mình mong muốn để cùng nhau tạo nên một cái kết thật đẹp cho 3 năm thanh xuân! 🌸✨</p>
+                `;
+            } else {
+                verdictBox.innerHTML = `
+                    <p>Vì nay là ngày 20/10 mà các bạn nam lại không nhường cho những bông hoa lớp mình thắng, nên tòa quyết định tuyên án team thua cuộc trong phiên tòa này là <b>TEAM NAM</b>! 🔨😁</p>
+                    <p>Để bù đắp sự thiếu tinh tế này, Ban tổ chức chúng tôi quyết định tặng một món quà nho nhỏ xem như là quà 20/10 cho các bạn nữ. Chúc những bông hoa của lớp luôn rạng rỡ, vui vẻ và được yêu thương thật nhiều. Chúc các bạn học thật tốt và đạt được những điều mình mong muốn để cùng nhau tạo nên một cái kết thật đẹp cho 3 năm thanh xuân! 🌸✨</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
